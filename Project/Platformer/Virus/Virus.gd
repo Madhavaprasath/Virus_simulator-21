@@ -65,3 +65,4 @@ func check_input():
 func _unhandled_input(event):
 	if event.is_action_pressed("move_up") && is_on_floor():
 		_velocity.y=-jump_impulse
+		#test ing 
