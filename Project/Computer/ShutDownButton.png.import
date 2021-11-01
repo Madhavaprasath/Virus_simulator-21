@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SkeleTON.png-3feeddbd08a4d2e1754d8f5d8d53df8a.stex"
+path="res://.import/ShutDownButton.png-fd6a564fd8b067336fd5958e136601ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Computer/Icons/SkeleTON.png"
-dest_files=[ "res://.import/SkeleTON.png-3feeddbd08a4d2e1754d8f5d8d53df8a.stex" ]
+source_file="res://Computer/ShutDownButton.png"
+dest_files=[ "res://.import/ShutDownButton.png-fd6a564fd8b067336fd5958e136601ae.stex" ]
 
 [params]
 

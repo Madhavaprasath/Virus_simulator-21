@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SkeleTON.png-3feeddbd08a4d2e1754d8f5d8d53df8a.stex"
+path="res://.import/Start_menu.png-d42f1b1304e1b695f0b21c923b1bd6fb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Computer/Icons/SkeleTON.png"
-dest_files=[ "res://.import/SkeleTON.png-3feeddbd08a4d2e1754d8f5d8d53df8a.stex" ]
+source_file="res://Computer/Start_menu.png"
+dest_files=[ "res://.import/Start_menu.png-d42f1b1304e1b695f0b21c923b1bd6fb.stex" ]
 
 [params]
 
