@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 496.347, 10 )
+
+[node name="Area1" type="Node2D"]
+
+[node name="Virus" parent="." instance=ExtResource( 1 )]
+position = Vector2( 244.697, 272.758 )
+
+[node name="CollisionShape2D" type="RigidBody2D" parent="."]
+position = Vector2( 517.918, 519.253 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 27.3642, 0 )
+scale = Vector2( 16.7052, 1 )
+texture = ExtResource( 2 )
