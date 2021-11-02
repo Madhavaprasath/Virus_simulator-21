@@ -1,6 +1,8 @@
 extends Control
 
 onready var task_manager=get_node("TextureRect/Startmenu")
+onready var tutorial=get_node("TextureRect/Tutorial")
+onready var trash=get_node("TextureRect/Trash")
 
 func _ready():
 	for button in get_tree().get_nodes_in_group("Icons"):
@@ -19,6 +21,13 @@ func on_icons_pressed(group,b_name):
 			get_tree().quit()
 		"Restart":
 			get_tree().reload_current_scene()
+		"Tutorial":
+			tutorial.visible=true
+		"Trash":
+			trash.visible=true
+		"Close":
+			var window="TextureRect/"+str(b_name)
+			get_node(window).visible=false
 
 func open_scene(area_name):
 	return ("res://Scenes/"+str(area_name)+"/"+str(area_name)+"-level1.tscn")

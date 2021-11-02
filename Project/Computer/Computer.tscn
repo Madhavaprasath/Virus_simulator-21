@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Computer/Icons/AchievementsButton.png" type="Texture" id=1]
 [ext_resource path="res://Computer/Icons/folder.png" type="Texture" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://Computer/Icons/bar.png" type="Texture" id=11]
 [ext_resource path="res://Computer/Start_menu.png" type="Texture" id=12]
 [ext_resource path="res://Computer/ShutDownButton.png" type="Texture" id=13]
+[ext_resource path="res://Computer/Windows/NotepadWindow.png" type="Texture" id=14]
+[ext_resource path="res://Computer/Icons/TrashCanWindow.png" type="Texture" id=15]
+[ext_resource path="res://Computer/Icons/CloseButton.png" type="Texture" id=16]
+[ext_resource path="res://Computer/Fonts/Notepadfont.tres" type="DynamicFont" id=17]
 
 [node name="Pc" type="Control"]
 anchor_right = 1.0
@@ -362,3 +366,67 @@ margin_bottom = 88.0
 size_flags_horizontal = 3
 texture_normal = ExtResource( 1 )
 expand = true
+
+[node name="Tutorial" type="TextureRect" parent="TextureRect"]
+visible = false
+margin_left = 315.37
+margin_top = 28.2843
+margin_right = 770.37
+margin_bottom = 538.284
+texture = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="TextureRect/Tutorial"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -202.5
+margin_top = -155.0
+margin_right = 212.5
+margin_bottom = 195.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 17 )
+text = "Hey  welcome  to  the  Virus 
+Simulator. You can start  the 
+Game  by  clicking  on  Area 1 
+And  click  on  the  Internet 
+for  the  secret  !!!"
+
+[node name="Tutorial" type="TextureButton" parent="TextureRect/Tutorial" groups=[
+"Close",
+"Icons",
+]]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -82.2499
+margin_top = 9.68179
+margin_right = -21.2499
+margin_bottom = 70.6818
+texture_normal = ExtResource( 16 )
+expand = true
+
+[node name="Trash" type="TextureRect" parent="TextureRect"]
+visible = false
+margin_left = 315.37
+margin_top = 28.2843
+margin_right = 770.37
+margin_bottom = 538.284
+texture = ExtResource( 15 )
+
+[node name="Trash" type="TextureButton" parent="TextureRect/Trash" groups=[
+"Close",
+"Icons",
+]]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -82.2499
+margin_top = 9.68179
+margin_right = -21.2499
+margin_bottom = 70.6818
+texture_normal = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
