@@ -30,4 +30,4 @@ func on_icons_pressed(group,b_name):
 			get_node(window).visible=false
 
 func open_scene(area_name):
-	return ("res://Scenes/"+str(area_name)+"/"+str(area_name)+"-level1.tscn")
+	return ("res://Platformer/Scenes/"+str(area_name)+"/"+str(area_name)+"-level1.tscn")

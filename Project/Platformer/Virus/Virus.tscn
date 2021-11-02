@@ -10,6 +10,12 @@ radius = 65.597
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 
+[node name="Raycast" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Raycast"]
+enabled = true
+cast_to = Vector2( 100, 0 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
