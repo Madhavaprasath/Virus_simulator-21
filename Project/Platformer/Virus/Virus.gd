@@ -27,13 +27,17 @@ func _physics_process(delta: float) -> void:
 	input_direction_x = check_input()
 	if current_state == states.MOVING_WALL:
 		apply_wall_velocity(delta)
-	
+	flip_raycast()
 	apply_gravity(delta)
 	apply_velocity(delta)
 	var state=match_state()
 	if state!=null:
 		current_state=state
 	print(current_state)
+
+func flip_raycast():
+	if input_direction_x!=0:
+		$Raycast.scale.x=input_direction_x
 func apply_gravity(delta):
 	# Calculating vertical velocity.
 	_velocity.y += base_gravity * delta
@@ -44,7 +48,7 @@ func apply_velocity(delta):
 	_velocity = move_and_slide(_velocity,Vector2.UP)
 
 func apply_wall_velocity(delta):
-	_velocity.y=-input_direction_x*speed
+	_velocity.y=-speed
 
 func match_state():
 	match current_state:
@@ -69,10 +73,13 @@ func match_state():
 			elif _velocity.y > 0:
 				return states.FALL
 		states.JUMPING:
-			if _velocity.y < 0:
-				return states.JUMPING
+			if _velocity.y > 0:
+				return states.FALL
 		states.FALL:
 			if is_on_floor():
+				return states.IDLE
+		states.MOVING_WALL:
+			if !raycast_colliding():
 				return states.IDLE
 
 func check_input():
@@ -90,6 +97,7 @@ func _unhandled_input(event):
 func raycast_colliding():
 	if raycast.is_colliding():
 		var dot=Vector2(0,-1).dot(raycast.get_collision_normal())
+		print(dot,"product")
 		if abs(dot)==0:
 			return true
 	return false
