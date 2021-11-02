@@ -47,7 +47,7 @@ __meta__ = {
 }
 
 [node name="Virus" parent="TextureRect" instance=ExtResource( 18 )]
-position = Vector2( 479, 492 )
+position = Vector2( 542, 459 )
 
 [node name="Icons" type="VBoxContainer" parent="TextureRect"]
 anchor_right = 1.0

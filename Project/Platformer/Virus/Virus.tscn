@@ -6,7 +6,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 58.0345
 
-[node name="Virus" type="KinematicBody2D"]
+[node name="Virus" type="KinematicBody2D" groups=[
+"virus",
+]]
 scale = Vector2( 0.35, 0.35 )
 script = ExtResource( 2 )
 
