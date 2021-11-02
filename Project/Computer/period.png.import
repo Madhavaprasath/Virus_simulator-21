@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NotepadWindow.png-3125014e6261445607176983f1580f5b.stex"
+path="res://.import/period.png-1669e5e4f043c11fd10c1f3955cc26ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Computer/Windows/NotepadWindow.png"
-dest_files=[ "res://.import/NotepadWindow.png-3125014e6261445607176983f1580f5b.stex" ]
+source_file="res://Computer/period.png"
+dest_files=[ "res://.import/period.png-1669e5e4f043c11fd10c1f3955cc26ca.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
