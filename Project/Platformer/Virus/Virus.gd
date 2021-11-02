@@ -48,7 +48,7 @@ func apply_velocity(delta):
 	_velocity = move_and_slide(_velocity,Vector2.UP)
 
 func apply_wall_velocity(delta):
-	_velocity.y=-speed
+	_velocity.y=-speed/4
 
 func match_state():
 	match current_state:
@@ -79,7 +79,7 @@ func match_state():
 			if is_on_floor():
 				return states.IDLE
 		states.MOVING_WALL:
-			if !raycast_colliding():
+			if !raycast_colliding() || input_direction_x==0:
 				return states.IDLE
 
 func check_input():
@@ -97,7 +97,6 @@ func _unhandled_input(event):
 func raycast_colliding():
 	if raycast.is_colliding():
 		var dot=Vector2(0,-1).dot(raycast.get_collision_normal())
-		print(dot,"product")
 		if abs(dot)==0:
 			return true
 	return false
