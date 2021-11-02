@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var speed := 500.0
-var jump_impulse := 1200.0
+var jump_impulse := 600.0
 var base_gravity := 1000.0
 
 var _velocity := Vector2.ZERO
@@ -16,10 +16,10 @@ var previous_state
 var current_state
 var input_direction_x
 func _ready():
-	current_state=states.IDLE
+	current_state = states.IDLE
 
 func _physics_process(delta: float) -> void:
-	input_direction_x=check_input()
+	input_direction_x = check_input()
 	apply_gravity(delta)
 	apply_velocity(delta)
 
@@ -28,27 +28,27 @@ func apply_gravity(delta):
 	_velocity.y += base_gravity * delta
 
 func apply_velocity(delta):
-	_velocity.x=lerp(_velocity.x,input_direction_x*speed,1-pow(0.0001,delta))
-	_velocity=move_and_slide(_velocity,Vector2.UP)
+	_velocity.x = lerp(_velocity.x,input_direction_x*speed,1-pow(0.0001,delta))
+	_velocity = move_and_slide(_velocity,Vector2.UP)
 
 func match_state():
 	match current_state:
 		states.IDLE:
 			if input_direction_x !=0:
 				return states.MOVE
-			if _velocity.y<0:
+			if _velocity.y < 0:
 				return states.JUMPING
-			elif _velocity.y>0:
+			elif _velocity.y > 0:
 				return states.FALL
 		states.MOVE:
-			if input_direction_x==0:
+			if input_direction_x == 0:
 				return states.IDLE
-			if _velocity.y<0:
+			if _velocity.y < 0:
 				return states.JUMPING
-			elif _velocity.y>0:
+			elif _velocity.y > 0:
 				return states.FALL
 		states.JUMPING:
-			if _velocity.y<0:
+			if _velocity.y < 0:
 				return states.JUMPING
 		states.FALL:
 			if is_on_floor():
@@ -64,5 +64,5 @@ func check_input():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("move_up") && is_on_floor():
-		_velocity.y=-jump_impulse
+		_velocity.y =- jump_impulse
 		#test ing 
