@@ -28,8 +28,6 @@ func toggle_collisions(body, state=null):
 			c.disabled = not state
 		else:
 			c.disabled = not c.disabled
-		print(body.get_parent().name)
-		print(c.disabled)
 
 func on_icons_pressed(group,b_name):
 	match group[1]:
@@ -63,7 +61,6 @@ func on_icons_pressed(group,b_name):
 			var window="TextureRect/"+str(b_name)
 			get_node(window).visible = false
 			allow_new_window = true
-			print("TOGGLE COLLISION")
 			toggle_collisions(
 				get_node(window).get_node("StaticBody2D"),
 				false
