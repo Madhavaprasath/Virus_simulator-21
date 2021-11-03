@@ -10,6 +10,7 @@ enum states{
 	IDLE,
 	MOVE,
 	MOVING_WALL,
+	FALLING_WALL,
 	JUMPING,
 	FALL
 }
@@ -21,11 +22,11 @@ var input_direction_x
 onready var raycast=get_node("Raycast/RayCast2D")
 func _ready():
 	current_state = states.IDLE
-	print(current_state)
+
 
 func _physics_process(delta: float) -> void:
 	input_direction_x = check_input()
-	if current_state == states.MOVING_WALL:
+	if current_state in [states.MOVING_WALL,states.FALLING_WALL]:
 		apply_wall_velocity(delta)
 	flip_raycast()
 	apply_gravity(delta)
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	var state=match_state()
 	if state!=null:
 		current_state=state
-	print(current_state)
+
 
 func flip_raycast():
 	if input_direction_x!=0:
@@ -48,15 +49,16 @@ func apply_velocity(delta):
 	_velocity = move_and_slide(_velocity,Vector2.UP)
 
 func apply_wall_velocity(delta):
-	_velocity.y=-speed/4
-
+	if current_state ==states.MOVING_WALL:
+		_velocity.y=-speed/4
+	else:
+		_velocity.y=speed/4
 func match_state():
 	match current_state:
 		states.IDLE:
 			if input_direction_x !=0:
 				return states.MOVE
 			elif input_direction_x!=0 && raycast_colliding():
-				print("hello")
 				return states.MOVING_WALL
 			if _velocity.y < 0:
 				return states.JUMPING
@@ -75,13 +77,19 @@ func match_state():
 		states.JUMPING:
 			if _velocity.y > 0:
 				return states.FALL
+			if input_direction_x!=0 && raycast_colliding():
+				return states.MOVING_WALL
 		states.FALL:
 			if is_on_floor():
 				return states.IDLE
+			if input_direction_x!=0 && raycast_colliding():
+				return states.FALLING_WALL
 		states.MOVING_WALL:
 			if !raycast_colliding() || input_direction_x==0:
 				return states.IDLE
-
+		states.FALLING_WALL:
+			if !raycast_colliding() || input_direction_x==0:
+				return states.IDLE
 func check_input():
 	var input_direction_x: float = (
 		Input.get_action_strength("move_right")
