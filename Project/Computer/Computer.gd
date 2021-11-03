@@ -20,6 +20,8 @@ func _ready():
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
+	change_icon("Infected")# you can have 2 modes infected and uninfected one You have to pass the mode in strings
+	#Infected and Uninfected
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
 	virus.visible = not virus.visible
@@ -36,8 +38,8 @@ func toggle_collisions(body, state=null):
 			c.disabled = not c.disabled
 
 func on_icons_pressed(group,b_name):
-	
-	match group[1]:
+	var element=len(group)-1
+	match group[element]:
 		"File":
 			if locked[b_name] in ["Unlocked"]:
 				var scene=open_scene(b_name)
@@ -58,7 +60,6 @@ func on_icons_pressed(group,b_name):
 			)
 			toggle_cloud_collision(false)
 			toggle_collisions(hill, true)
-	match group[2]:
 		"Tutorial":
 			if allow_new_window:
 				tutorial.visible=true

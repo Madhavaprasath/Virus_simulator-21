@@ -386,7 +386,6 @@ __meta__ = {
 [node name="TextureButton" type="TextureButton" parent="TextureRect/Startmenu/HBoxContainer" groups=[
 "Icons",
 "Shutdown",
-"Starmenu",
 ]]
 margin_right = 91.0
 margin_bottom = 88.0
@@ -397,7 +396,6 @@ expand = true
 [node name="TextureButton2" type="TextureButton" parent="TextureRect/Startmenu/HBoxContainer" groups=[
 "Icons",
 "Restart",
-"Startmenu",
 ]]
 margin_left = 98.0
 margin_right = 189.0
@@ -443,7 +441,6 @@ from  the  inside  out!"
 [node name="Tutorial" type="TextureButton" parent="TextureRect/Tutorial" groups=[
 "Close",
 "Icons",
-"Window",
 ]]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -494,7 +491,6 @@ __meta__ = {
 [node name="Trash" type="TextureButton" parent="TextureRect/Trash" groups=[
 "Close",
 "Icons",
-"Window",
 ]]
 anchor_left = 1.0
 anchor_right = 1.0
