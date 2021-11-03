@@ -14,7 +14,7 @@
 [ext_resource path="res://Computer/Start_menu.png" type="Texture" id=12]
 [ext_resource path="res://Computer/ShutDownButton.png" type="Texture" id=13]
 [ext_resource path="res://Computer/Windows/NotepadWindow.png" type="Texture" id=14]
-[ext_resource path="res://Computer/Icons/TrashCanWindow.png" type="Texture" id=15]
+[ext_resource path="res://Computer/Windows/TrashCanWindow.png" type="Texture" id=15]
 [ext_resource path="res://Computer/Icons/CloseButton.png" type="Texture" id=16]
 [ext_resource path="res://Computer/Fonts/Notepadfont.tres" type="DynamicFont" id=17]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=18]
@@ -37,7 +37,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." groups=[
+"BackGround",
+"Infectable",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
@@ -72,6 +75,7 @@ rect_min_size = Vector2( 67, 0 )
 [node name="Area1" type="TextureButton" parent="TextureRect/Icons/HBoxContainer/VBoxContainer" groups=[
 "File",
 "Icons",
+"Infectable",
 ]]
 margin_right = 67.0
 margin_bottom = 68.0
@@ -101,6 +105,7 @@ custom_constants/separation = 0
 [node name="Finale" type="TextureButton" parent="TextureRect/Icons/HBoxContainer/VBoxContainer2" groups=[
 "File",
 "Icons",
+"Infectable",
 ]]
 margin_right = 67.0
 margin_bottom = 72.0
@@ -135,6 +140,7 @@ rect_min_size = Vector2( 67, 0 )
 [node name="Area2" type="TextureButton" parent="TextureRect/Icons/HBoxContainer2/VBoxContainer" groups=[
 "File",
 "Icons",
+"Infectable",
 ]]
 margin_right = 67.0
 margin_bottom = 68.0
@@ -162,6 +168,7 @@ rect_min_size = Vector2( 67, 0 )
 
 [node name="Internet" type="TextureButton" parent="TextureRect/Icons/HBoxContainer2/VBoxContainer2" groups=[
 "Icons",
+"Infectable",
 "Internet",
 ]]
 margin_right = 72.0
@@ -197,6 +204,7 @@ rect_min_size = Vector2( 67, 0 )
 [node name="Area3" type="TextureButton" parent="TextureRect/Icons/HBoxContainer3/VBoxContainer" groups=[
 "File",
 "Icons",
+"Infectable",
 ]]
 margin_right = 67.0
 margin_bottom = 68.0
@@ -224,6 +232,7 @@ rect_min_size = Vector2( 67, 0 )
 
 [node name="Trash" type="TextureButton" parent="TextureRect/Icons/HBoxContainer3/VBoxContainer2" groups=[
 "Icons",
+"Infectable",
 "Trash",
 ]]
 margin_right = 74.0
@@ -259,6 +268,7 @@ rect_min_size = Vector2( 67, 0 )
 [node name="Area4" type="TextureButton" parent="TextureRect/Icons/HBoxContainer4/VBoxContainer" groups=[
 "File",
 "Icons",
+"Infectable",
 ]]
 margin_right = 67.0
 margin_bottom = 68.0
@@ -287,6 +297,7 @@ rect_min_size = Vector2( 67, 0 )
 
 [node name="Tutorial" type="TextureButton" parent="TextureRect/Icons/HBoxContainer4/VBoxContainer2" groups=[
 "Icons",
+"Infectable",
 "Tutorial",
 ]]
 margin_right = 67.0
@@ -508,12 +519,16 @@ disabled = true
 polygon = PoolVector2Array( 0, 384, 94, 335, 142, 318, 172, 311, 196, 307, 265, 307, 349, 327, 361, 330, 419, 350, 425, 353, 435, 356, 506, 393, 512, 397, 524, 400, 537, 404, 546, 407, 563, 407, 566, 411, 614, 417, 636, 423, 652, 423, 681, 427, 701, 430, 710, 433, 841, 433, 926, 420, 979, 414, 1023, 411, 1023, 416, 847, 439, 700, 438, 595, 422, 523, 407, 462, 378, 392, 346, 309, 325, 261, 313, 193, 312, 121, 331, 74, 352, 33, 372, 0, 389 )
 one_way_collision = true
 
-[node name="Cloud1" type="StaticBody2D" parent="TextureRect"]
+[node name="Cloud1" type="StaticBody2D" parent="TextureRect" groups=[
+"Clouds",
+]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/Cloud1"]
 polygon = PoolVector2Array( 333, 204, 333, 207, 330, 206, 329, 210, 326, 210, 326, 213, 323, 213, 323, 223, 327, 224, 327, 229, 342, 248, 349, 259, 355, 262, 362, 265, 375, 271, 390, 271, 405, 267, 415, 261, 417, 257, 428, 259, 488, 274, 518, 273, 530, 277, 584, 280, 610, 275, 631, 266, 644, 252, 649, 242, 650, 234, 646, 229, 638, 223, 632, 216, 622, 211, 608, 204, 601, 203, 576, 203, 563, 210, 557, 214, 555, 217, 551, 219, 547, 218, 541, 210, 541, 202, 537, 195, 528, 188, 518, 179, 507, 167, 503, 164, 497, 161, 464, 153, 455, 159, 444, 161, 437, 168, 431, 172, 420, 179, 414, 184, 409, 192, 404, 199, 401, 202, 397, 208, 395, 211, 392, 213, 379, 212, 351, 206, 343, 202 )
 
-[node name="Cloud2" type="StaticBody2D" parent="TextureRect"]
+[node name="Cloud2" type="StaticBody2D" parent="TextureRect" groups=[
+"Clouds",
+]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/Cloud2"]
 polygon = PoolVector2Array( 47, 206, 56, 199, 49, 190, 51, 182, 61, 173, 71, 165, 78, 160, 91, 154, 84, 147, 80, 133, 79, 132, 87, 116, 92, 108, 100, 95, 108, 90, 121, 83, 136, 79, 147, 77, 167, 80, 177, 82, 193, 87, 204, 93, 217, 97, 221, 102, 227, 108, 236, 102, 246, 98, 257, 94, 270, 94, 290, 94, 296, 96, 302, 99, 314, 108, 320, 121, 318, 125, 316, 129, 312, 134, 298, 142, 283, 151, 262, 158, 240, 164, 229, 169, 196, 180, 162, 190, 150, 193, 118, 201, 105, 201, 83, 207, 82, 211, 80, 214, 79, 216, 73, 215, 68, 211, 58, 210, 51, 208 )

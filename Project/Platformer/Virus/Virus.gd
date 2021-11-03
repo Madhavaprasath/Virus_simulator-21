@@ -21,6 +21,7 @@ var current_state
 var input_direction_x
 
 var is_hill_disabled := false 
+var hill_collision=false
 
 onready var raycast=get_node("Raycast/RayCast2D")
 func _ready():
@@ -56,12 +57,15 @@ func apply_velocity(delta):
 	$Sprite.rotation_degrees=lerp($Sprite.rotation_degrees,$Sprite.rotation_degrees+(15*input_direction_x),0.8)
 	_velocity = move_and_slide(_velocity,Vector2.UP)
 	
-	var collision = get_slide_collision(get_slide_count() - 1)
-	if collision:
-		if collision.collider.name == 'HillCollision':
-			get_parent().move_child(self, 0)
+	for index in get_slide_count():
+		var collision=get_slide_collision(index)
+		if collision && collision.collider.name=="HillCollision":
+			hill_collision=true
+	
+	if hill_collision:
+		get_parent().move_child(self,0)
 	else:
-		get_parent().move_child(self, 5)
+		get_parent().move_child(self,5)
 
 func apply_wall_velocity(delta):
 	if current_state ==states.MOVING_WALL:
