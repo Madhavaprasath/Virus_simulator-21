@@ -7,8 +7,8 @@ var pc_stats={
 			"Unlocked":"res://Computer/Icons/f01der.png"
 		},
 		"Uninfected":{
-			"Locked":"res://Computer/Icons/folder.png",
-			"Unlocked":"res://Computer/Icons/folderLocked.png"
+			"Locked":"res://Computer/Icons/folderLocked.png",
+			"Unlocked":"res://Computer/Icons/folder.png"
 		}
 	},
 	"BackGround":{

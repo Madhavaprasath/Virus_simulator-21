@@ -20,7 +20,6 @@ func _ready():
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
-		change_icon("Uninfected")
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
 	virus.visible = not virus.visible
@@ -37,36 +36,18 @@ func toggle_collisions(body, state=null):
 			c.disabled = not c.disabled
 
 func on_icons_pressed(group,b_name):
+	
 	match group[1]:
 		"File":
 			if locked[b_name] in ["Unlocked"]:
 				var scene=open_scene(b_name)
 				get_tree().change_scene(scene)
-		"Internet":
-			OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 		"Start":
 			task_manager.visible = not task_manager.visible
 		"Shutdown":
 			get_tree().quit()
 		"Restart":
 			get_tree().reload_current_scene()
-		"Tutorial":
-			if allow_new_window:
-				tutorial.visible=true
-				allow_new_window=false
-				toggle_collisions(tutorial.get_node("StaticBody2D"))
-				toggle_collisions(hill, false)
-				toggle_cloud_collision(true)
-				if not has_virus_spawned:
-					toggle_virus()
-					has_virus_spawned = true
-		"Trash":
-			if allow_new_window:
-				trash.visible=true
-				allow_new_window=false
-				toggle_collisions(trash.get_node("StaticBody2D"))
-				toggle_collisions(hill, false)
-				toggle_cloud_collision(true)
 		"Close":
 			var window="TextureRect/"+str(b_name)
 			get_node(window).visible = false
@@ -77,7 +58,26 @@ func on_icons_pressed(group,b_name):
 			)
 			toggle_cloud_collision(false)
 			toggle_collisions(hill, true)
-
+	match group[2]:
+		"Tutorial":
+			if allow_new_window:
+				tutorial.visible=true
+				allow_new_window=false
+				toggle_collisions(tutorial.get_node("StaticBody2D"))
+				toggle_collisions(hill, false)
+				toggle_cloud_collision(true)
+				if not has_virus_spawned:
+					toggle_virus()
+					has_virus_spawned = true
+		"Internet":
+			OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+		"Trash":
+			if allow_new_window:
+				trash.visible=true
+				allow_new_window=false
+				toggle_collisions(trash.get_node("StaticBody2D"))
+				toggle_collisions(hill, false)
+				toggle_cloud_collision(true)
 func open_scene(area_name):
 	return ("res://Platformer/Scenes/"+str(area_name)+"/"+str(area_name)+"-level1.tscn")
 
@@ -87,9 +87,6 @@ func toggle_cloud_collision(toggle):
 		poly.disabled=toggle
 
 
-func _on_Pc_status_change_pc_status(status):
-	current_status=status
-	change_icon(status)
 
 
 func change_icon(status):

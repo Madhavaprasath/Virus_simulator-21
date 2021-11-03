@@ -32,6 +32,7 @@ extents = Vector2( 2, 215 )
 [node name="Pc" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -385,6 +386,7 @@ __meta__ = {
 [node name="TextureButton" type="TextureButton" parent="TextureRect/Startmenu/HBoxContainer" groups=[
 "Icons",
 "Shutdown",
+"Starmenu",
 ]]
 margin_right = 91.0
 margin_bottom = 88.0
@@ -395,6 +397,7 @@ expand = true
 [node name="TextureButton2" type="TextureButton" parent="TextureRect/Startmenu/HBoxContainer" groups=[
 "Icons",
 "Restart",
+"Startmenu",
 ]]
 margin_left = 98.0
 margin_right = 189.0
@@ -440,6 +443,7 @@ from  the  inside  out!"
 [node name="Tutorial" type="TextureButton" parent="TextureRect/Tutorial" groups=[
 "Close",
 "Icons",
+"Window",
 ]]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -474,7 +478,9 @@ disabled = true
 polygon = PoolVector2Array( -0.369995, 494.716, 14.63, 494.716, 14.63, 499.716, 439.63, 499.716, 439.63, 494.716, 444.63, 494.716, 454.63, 494.716, 454.63, 499.716, 449.63, 499.716, 449.63, 504.716, 444.63, 504.716, 444.63, 509.716, 9.63, 509.716, 9.63, 504.716, 4.63, 504.716, 4.63, 499.716, -0.369995, 499.716 )
 disabled = true
 
-[node name="Trash" type="TextureRect" parent="TextureRect"]
+[node name="Trash" type="TextureRect" parent="TextureRect" groups=[
+"Window",
+]]
 visible = false
 margin_left = 315.37
 margin_top = 28.2843
@@ -488,6 +494,7 @@ __meta__ = {
 [node name="Trash" type="TextureButton" parent="TextureRect/Trash" groups=[
 "Close",
 "Icons",
+"Window",
 ]]
 anchor_left = 1.0
 anchor_right = 1.0
