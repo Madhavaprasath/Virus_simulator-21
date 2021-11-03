@@ -6,12 +6,9 @@ onready var trash=get_node("TextureRect/Trash")
 onready var hill=get_node("TextureRect/HillCollision")
 onready var virus=get_node("TextureRect/Virus")
 
-
 var allow_new_window := true # To avoid 2 simultaneous windows
 var has_virus_spawned := false
 var current_status="Uninfected"
-
-
 
 var Pc_stats=Global.pc_stats
 var locked=Global.locked_status
@@ -22,6 +19,7 @@ func _ready():
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
 	#change_icon("Infected")# you can have 2 modes infected and uninfected one You have to pass the mode in strings
 	#Infected and Uninfected
+
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
 	virus.visible = not virus.visible
@@ -103,9 +101,6 @@ func toggle_cloud_collision(toggle):
 	for cloud in get_tree().get_nodes_in_group("Clouds"):
 		var poly=cloud.get_node("CollisionPolygon2D")
 		poly.disabled=toggle
-
-
-
 
 func change_icon(status):
 	for i in get_tree().get_nodes_in_group("Infectable"):
