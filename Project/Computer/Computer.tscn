@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Computer/Icons/AchievementsButton.png" type="Texture" id=1]
 [ext_resource path="res://Computer/Icons/folder.png" type="Texture" id=2]
@@ -17,6 +17,17 @@
 [ext_resource path="res://Computer/Icons/TrashCanWindow.png" type="Texture" id=15]
 [ext_resource path="res://Computer/Icons/CloseButton.png" type="Texture" id=16]
 [ext_resource path="res://Computer/Fonts/Notepadfont.tres" type="DynamicFont" id=17]
+[ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Computer/period.png" type="Texture" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 221, 34 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4, 221 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2, 215 )
 
 [node name="Pc" type="Control"]
 anchor_right = 1.0
@@ -34,6 +45,9 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Virus" parent="TextureRect" instance=ExtResource( 18 )]
+position = Vector2( 542, 459 )
 
 [node name="Icons" type="VBoxContainer" parent="TextureRect"]
 anchor_right = 1.0
@@ -267,7 +281,7 @@ valign = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/Icons/HBoxContainer4"]
 margin_left = 87.0
-margin_right = 159.0
+margin_right = 188.0
 margin_bottom = 139.0
 rect_min_size = Vector2( 67, 0 )
 
@@ -275,24 +289,30 @@ rect_min_size = Vector2( 67, 0 )
 "Icons",
 "Tutorial",
 ]]
-margin_right = 72.0
-margin_bottom = 68.0
-rect_min_size = Vector2( 0, 67 )
-size_flags_vertical = 3
+margin_right = 67.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 67, 67 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture_normal = ExtResource( 9 )
 expand = true
 
 [node name="Label" type="Label" parent="TextureRect/Icons/HBoxContainer4/VBoxContainer2"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 72.0
-margin_right = 72.0
-margin_bottom = 139.0
+margin_top = 71.0
+margin_right = 101.0
+margin_bottom = 138.0
 rect_min_size = Vector2( 0, 67 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Tutorial"
+text = "Tutorial exe"
 align = 1
 valign = 1
+
+[node name="Sprite" type="Sprite" parent="TextureRect/Icons/HBoxContainer4/VBoxContainer2"]
+position = Vector2( 71, 107 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 19 )
 
 [node name="TaskManager" type="HBoxContainer" parent="TextureRect"]
 anchor_top = 1.0
@@ -321,6 +341,11 @@ margin_bottom = 32.0
 size_flags_horizontal = 3
 texture = ExtResource( 11 )
 expand = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TextureRect/TaskManager"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/TaskManager/StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 32, 0, 32 )
 
 [node name="Startmenu" type="TextureRect" parent="TextureRect"]
 visible = false
@@ -374,6 +399,9 @@ margin_top = 28.2843
 margin_right = 770.37
 margin_bottom = 538.284
 texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="TextureRect/Tutorial"]
 modulate = Color( 0, 0, 0, 1 )
@@ -388,11 +416,15 @@ margin_bottom = 195.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 17 )
-text = "Hey  welcome  to  the  Virus 
-Simulator. You can start  the 
-Game  by  clicking  on  Area 1 
-And  click  on  the  Internet 
-for  the  secret  !!!"
+text = "GOTEM! this  pc  is infected
+
+move  with  the   arrows
+interact  pressing    e 
+open  programs  by  clicking
+use  them  to  your  advantage
+
+destroy  this  computer
+from  the  inside  out!"
 
 [node name="Tutorial" type="TextureButton" parent="TextureRect/Tutorial" groups=[
 "Close",
@@ -406,6 +438,30 @@ margin_right = -21.2499
 margin_bottom = 70.6818
 texture_normal = ExtResource( 16 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TextureRect/Tutorial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Tutorial/StaticBody2D"]
+position = Vector2( 225.63, 41.7157 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TextureRect/Tutorial/StaticBody2D"]
+position = Vector2( 8.63, 293.716 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TextureRect/Tutorial/StaticBody2D"]
+position = Vector2( 448.63, 293.716 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="CollisionShape2D4" type="CollisionPolygon2D" parent="TextureRect/Tutorial/StaticBody2D"]
+polygon = PoolVector2Array( -0.369995, 494.716, 14.63, 494.716, 14.63, 499.716, 439.63, 499.716, 439.63, 494.716, 444.63, 494.716, 454.63, 494.716, 454.63, 499.716, 449.63, 499.716, 449.63, 504.716, 444.63, 504.716, 444.63, 509.716, 9.63, 509.716, 9.63, 504.716, 4.63, 504.716, 4.63, 499.716, -0.369995, 499.716 )
+disabled = true
 
 [node name="Trash" type="TextureRect" parent="TextureRect"]
 visible = false
@@ -414,6 +470,9 @@ margin_top = 28.2843
 margin_right = 770.37
 margin_bottom = 538.284
 texture = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Trash" type="TextureButton" parent="TextureRect/Trash" groups=[
 "Close",
@@ -430,3 +489,36 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TextureRect/Trash"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/Trash/StaticBody2D"]
+polygon = PoolVector2Array( 9.63, 80.7157, 9.63, 494.716, 14.63, 494.716, 14.63, 499.716, 439.63, 499.716, 439.63, 494.716, 444.63, 494.716, 444.63, 79.7157, 454.63, 79.7157, 454.63, 499.716, 449.63, 499.716, 449.63, 504.716, 444.63, 504.716, 444.63, 509.716, 9.63, 509.716, 9.63, 504.716, 4.63, 504.716, 4.63, 499.716, -0.369995, 499.716, -0.369995, 80.7157 )
+disabled = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TextureRect/Trash/StaticBody2D"]
+polygon = PoolVector2Array( 14.63, 79.7157, 454.63, 79.7157, 454.63, 9.7157, 449.63, 9.7157, 449.63, 4.7157, 444.63, 4.7157, 444.63, -0.2843, 9.63, -0.2843, 9.63, 4.7157, 4.63, 4.7157, 4.63, 9.7157, -0.369995, 9.7157, -0.369995, 80.7157, 9.63, 79.7157 )
+disabled = true
+
+[node name="HillCollision" type="StaticBody2D" parent="TextureRect"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/HillCollision" groups=[
+"HillCollision",
+]]
+polygon = PoolVector2Array( 0, 384, 94, 335, 142, 318, 172, 311, 196, 307, 265, 307, 349, 327, 361, 330, 419, 350, 425, 353, 435, 356, 506, 393, 512, 397, 524, 400, 537, 404, 546, 407, 563, 407, 566, 411, 614, 417, 636, 423, 652, 423, 681, 427, 701, 430, 710, 433, 841, 433, 926, 420, 979, 414, 1023, 411, 1023, 416, 847, 439, 700, 438, 595, 422, 523, 407, 462, 378, 392, 346, 309, 325, 261, 313, 193, 312, 121, 331, 74, 352, 33, 372, 0, 389 )
+one_way_collision = true
+
+[node name="Cloud1" type="StaticBody2D" parent="TextureRect"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/Cloud1"]
+polygon = PoolVector2Array( 333, 204, 333, 207, 330, 206, 329, 210, 326, 210, 326, 213, 323, 213, 323, 223, 327, 224, 327, 229, 342, 248, 349, 259, 355, 262, 362, 265, 375, 271, 390, 271, 405, 267, 415, 261, 417, 257, 428, 259, 488, 274, 518, 273, 530, 277, 584, 280, 610, 275, 631, 266, 644, 252, 649, 242, 650, 234, 646, 229, 638, 223, 632, 216, 622, 211, 608, 204, 601, 203, 576, 203, 563, 210, 557, 214, 555, 217, 551, 219, 547, 218, 541, 210, 541, 202, 537, 195, 528, 188, 518, 179, 507, 167, 503, 164, 497, 161, 464, 153, 455, 159, 444, 161, 437, 168, 431, 172, 420, 179, 414, 184, 409, 192, 404, 199, 401, 202, 397, 208, 395, 211, 392, 213, 379, 212, 351, 206, 343, 202 )
+
+[node name="Cloud2" type="StaticBody2D" parent="TextureRect"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/Cloud2"]
+polygon = PoolVector2Array( 47, 206, 56, 199, 49, 190, 51, 182, 61, 173, 71, 165, 78, 160, 91, 154, 84, 147, 80, 133, 79, 132, 87, 116, 92, 108, 100, 95, 108, 90, 121, 83, 136, 79, 147, 77, 167, 80, 177, 82, 193, 87, 204, 93, 217, 97, 221, 102, 227, 108, 236, 102, 246, 98, 257, 94, 270, 94, 290, 94, 296, 96, 302, 99, 314, 108, 320, 121, 318, 125, 316, 129, 312, 134, 298, 142, 283, 151, 262, 158, 240, 164, 229, 169, 196, 180, 162, 190, 150, 193, 118, 201, 105, 201, 83, 207, 82, 211, 80, 214, 79, 216, 73, 215, 68, 211, 58, 210, 51, 208 )
+
+[node name="MapBoundaries" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="MapBoundaries"]
+polygon = PoolVector2Array( 0, 600, 1, 600, 1, 1, 1023, 1, 1023, 600, 1024, 600, 1024, 0, 0, 0 )

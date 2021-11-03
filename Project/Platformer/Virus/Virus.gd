@@ -6,6 +6,8 @@ var base_gravity := 1000.0
 
 var _velocity := Vector2.ZERO
 
+onready var camera := $Camera2D
+
 enum states{
 	IDLE,
 	MOVE,
@@ -18,6 +20,7 @@ var previous_state
 var current_state
 var input_direction_x
 
+var is_hill_disabled := false 
 
 onready var raycast=get_node("Raycast/RayCast2D")
 func _ready():
@@ -34,6 +37,11 @@ func _physics_process(delta: float) -> void:
 	var state=match_state()
 	if state!=null:
 		current_state=state
+	if is_hill_disabled and is_on_floor():
+		var hill = get_hill()
+		if hill:
+			hill.disabled = false
+			is_hill_disabled = false
 
 
 func flip_raycast():
@@ -47,6 +55,13 @@ func apply_velocity(delta):
 	_velocity.x = lerp(_velocity.x,input_direction_x*speed,1-pow(0.0001,delta))
 	$Sprite.rotation_degrees=lerp($Sprite.rotation_degrees,$Sprite.rotation_degrees+(15*input_direction_x),0.8)
 	_velocity = move_and_slide(_velocity,Vector2.UP)
+	
+	var collision = get_slide_collision(get_slide_count() - 1)
+	if collision:
+		if collision.collider.name == 'HillCollision':
+			get_parent().move_child(self, 0)
+	else:
+		get_parent().move_child(self, 5)
 
 func apply_wall_velocity(delta):
 	if current_state ==states.MOVING_WALL:
@@ -68,7 +83,6 @@ func match_state():
 			if input_direction_x == 0:
 				return states.IDLE
 			elif input_direction_x!=0 && raycast_colliding():
-				print("hello")
 				return states.MOVING_WALL
 			if _velocity.y < 0:
 				return states.JUMPING
@@ -97,10 +111,24 @@ func check_input():
 	)
 	return input_direction_x
 
+func drop():
+	var hill = get_hill()
+	if hill:
+		hill.disabled = true
+		is_hill_disabled = true
+		get_parent().move_child(self, 0)
+	
+func get_hill():
+	var result = get_tree().get_nodes_in_group("HillCollision")
+	if len(result):
+		return result[0]
+	return null
+
 func _unhandled_input(event):
 	if event.is_action_pressed("move_up") && is_on_floor():
 		_velocity.y =- jump_impulse
-		#test ing 
+	if event.is_action_pressed("move_down") && is_on_floor():
+		drop()
 
 func raycast_colliding():
 	if raycast.is_colliding():
