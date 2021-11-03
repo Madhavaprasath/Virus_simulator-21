@@ -57,10 +57,12 @@ func apply_velocity(delta):
 	$Sprite.rotation_degrees=lerp($Sprite.rotation_degrees,$Sprite.rotation_degrees+(15*input_direction_x),0.8)
 	_velocity = move_and_slide(_velocity,Vector2.UP)
 	
-	for index in get_slide_count():
-		var collision=get_slide_collision(index)
-		if collision && collision.collider.name=="HillCollision":
-			hill_collision=true
+	var index = get_slide_count() - 1
+	if index >= 0:
+		var collision = get_slide_collision(index)
+		hill_collision = collision && collision.collider.name=="HillCollision"
+	else:
+		hill_collision = false
 	
 	var parent = get_parent()
 	if hill_collision:

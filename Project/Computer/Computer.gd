@@ -54,13 +54,10 @@ func get_group_element(group):
 			return g
 
 func on_icons_pressed(group,b_name):
-	print("Pressed: ", group, " ", b_name)
 	var element = get_group_element(group)
 	match element:
 		"File":
-			print("File!!!!")
 			if locked[b_name] in ["Unlocked"]:
-				print("ops")
 				var scene = open_scene(b_name)
 				get_tree().change_scene(scene)
 		"Start":
@@ -80,9 +77,7 @@ func on_icons_pressed(group,b_name):
 			toggle_cloud_collision(false)
 			toggle_collisions(hill, true)
 		"Tutorial":
-			print("Trying to open tutorial")
 			if allow_new_window:
-				print("tutorial opened")
 				tutorial.visible=true
 				allow_new_window=false
 				toggle_collisions(tutorial.get_node("StaticBody2D"))
@@ -94,9 +89,7 @@ func on_icons_pressed(group,b_name):
 		"Internet":
 			OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 		"Trash":
-			print("Trying to open trash")
 			if allow_new_window:
-				print("trash opened")
 				trash.visible=true
 				allow_new_window=false
 				toggle_collisions(trash.get_node("StaticBody2D"))
