@@ -20,7 +20,7 @@ func _ready():
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
-	change_icon("Infected")# you can have 2 modes infected and uninfected one You have to pass the mode in strings
+	#change_icon("Infected")# you can have 2 modes infected and uninfected one You have to pass the mode in strings
 	#Infected and Uninfected
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
@@ -37,12 +37,31 @@ func toggle_collisions(body, state=null):
 		else:
 			c.disabled = not c.disabled
 
+func get_group_element(group):
+	var possible_groups = [
+		"File",
+		"Start",
+		"Shutdown",
+		"Restart",
+		"Close",
+		"Tutorial",
+		"Internet",
+		"Trash"
+	]
+	
+	for g in group:
+		if g in possible_groups:
+			return g
+
 func on_icons_pressed(group,b_name):
-	var element=len(group)-1
-	match group[element]:
+	print("Pressed: ", group, " ", b_name)
+	var element = get_group_element(group)
+	match element:
 		"File":
+			print("File!!!!")
 			if locked[b_name] in ["Unlocked"]:
-				var scene=open_scene(b_name)
+				print("ops")
+				var scene = open_scene(b_name)
 				get_tree().change_scene(scene)
 		"Start":
 			task_manager.visible = not task_manager.visible
@@ -61,7 +80,9 @@ func on_icons_pressed(group,b_name):
 			toggle_cloud_collision(false)
 			toggle_collisions(hill, true)
 		"Tutorial":
+			print("Trying to open tutorial")
 			if allow_new_window:
+				print("tutorial opened")
 				tutorial.visible=true
 				allow_new_window=false
 				toggle_collisions(tutorial.get_node("StaticBody2D"))
@@ -73,12 +94,15 @@ func on_icons_pressed(group,b_name):
 		"Internet":
 			OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 		"Trash":
+			print("Trying to open trash")
 			if allow_new_window:
+				print("trash opened")
 				trash.visible=true
 				allow_new_window=false
 				toggle_collisions(trash.get_node("StaticBody2D"))
 				toggle_collisions(hill, false)
 				toggle_cloud_collision(true)
+
 func open_scene(area_name):
 	return ("res://Platformer/Scenes/"+str(area_name)+"/"+str(area_name)+"-level1.tscn")
 

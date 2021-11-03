@@ -21,12 +21,12 @@ var current_state
 var input_direction_x
 
 var is_hill_disabled := false 
-var hill_collision=false
+var hill_collision := false
 
 onready var raycast=get_node("Raycast/RayCast2D")
+
 func _ready():
 	current_state = states.IDLE
-
 
 func _physics_process(delta: float) -> void:
 	input_direction_x = check_input()
@@ -44,10 +44,10 @@ func _physics_process(delta: float) -> void:
 			hill.disabled = false
 			is_hill_disabled = false
 
-
 func flip_raycast():
 	if input_direction_x!=0:
 		$Raycast.scale.x=input_direction_x
+
 func apply_gravity(delta):
 	# Calculating vertical velocity.
 	_velocity.y += base_gravity * delta
@@ -62,16 +62,18 @@ func apply_velocity(delta):
 		if collision && collision.collider.name=="HillCollision":
 			hill_collision=true
 	
+	var parent = get_parent()
 	if hill_collision:
-		get_parent().move_child(self,0)
-	else:
-		get_parent().move_child(self,5)
+		parent.move_child(self,0)
+	elif parent.name == 'TextureRect':
+		parent.move_child(self,5)
 
 func apply_wall_velocity(delta):
 	if current_state ==states.MOVING_WALL:
 		_velocity.y=-speed/4
 	else:
 		_velocity.y=speed/4
+
 func match_state():
 	match current_state:
 		states.IDLE:
@@ -108,6 +110,7 @@ func match_state():
 		states.FALLING_WALL:
 			if !raycast_colliding() || input_direction_x==0:
 				return states.IDLE
+
 func check_input():
 	var input_direction_x: float = (
 		Input.get_action_strength("move_right")
