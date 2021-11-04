@@ -29,6 +29,7 @@ func _ready():
 	current_state = states.IDLE
 
 func _physics_process(delta: float) -> void:
+	stomping()
 	input_direction_x = check_input()
 	if current_state in [states.MOVING_WALL,states.FALLING_WALL]:
 		apply_wall_velocity(delta)
@@ -145,3 +146,11 @@ func raycast_colliding():
 		if abs(dot)==0:
 			return true
 	return false
+
+func stomping():
+	for i in get_slide_count():
+		var collision=get_slide_collision(i)
+		if collision.collider.is_in_group("Enemies"):
+			var dot=Vector2(0,-1).dot(collision.normal)
+			if abs(dot)==1:
+				_velocity.y=-jump_impulse

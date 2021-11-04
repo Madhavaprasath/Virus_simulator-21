@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Platformer/Enemies/Enemies.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.1549, 29.9265 )
+
+[node name="Enemies" type="KinematicBody2D" groups=[
+"Enemies",
+]]
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Body"]
+texture = ExtResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Body"]
+position = Vector2( 33.7559, -0.631012 )
+enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
