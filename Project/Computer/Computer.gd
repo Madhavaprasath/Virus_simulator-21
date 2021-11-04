@@ -18,12 +18,15 @@ func _ready():
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
-	#infect_computer()
+	toggle_all_icons("Uninfected")
 
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
 	virus.visible = not virus.visible
-	
+
+func unlock_area():
+	pass #TODO
+
 func toggle_collisions(body, state=null):
 	if not body:
 		return
@@ -131,17 +134,17 @@ func toggle_icon_infection(i, status):
 		has_changed = not i.texture_normal.load_path == resource.load_path
 		i.texture_normal=resource
 	
-	if has_changed:
+	if status == 'Infected' and has_changed:
 		i.material = ShaderMaterial.new()
 		i.material.shader = GlitchShader
 		i.material.set_shader_param("shake_power", 0.176)
 		i.material.set_shader_param("shake_speed", 0.691)
 		i.material.set_shader_param("shake_block", 5.143)
-	
-	yield(get_tree().create_timer(0.5),"timeout")
-	i.material.shader = null
+		
+		yield(get_tree().create_timer(0.5),"timeout")
+		i.material.shader = null
 
-# Not sure when we'll need this! Maybe later
-func infect_computer():
+
+func toggle_all_icons(status):
 	for i in get_tree().get_nodes_in_group("Infectable"):
-		toggle_icon_infection(i, "Infected")
+		toggle_icon_infection(i, status)

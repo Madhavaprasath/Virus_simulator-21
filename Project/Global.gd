@@ -30,7 +30,7 @@ var pc_stats={
 }
 
 var locked_status={
-	"Area1":"Unlocked",
+	"Area1":"Locked",
 	"Area2":"Locked",
 	"Area3":"Locked",
 	"Area4":"Locked",
