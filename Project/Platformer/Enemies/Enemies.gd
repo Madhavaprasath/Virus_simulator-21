@@ -48,7 +48,7 @@ func Attack_player():
 	velocity=Vector2()
 
 func check_direction():
-	if (!$Body/RayCast2D.is_colliding() && is_on_floor())|| is_on_wall():
+	if (!$Body/RayCast2D.is_colliding() && is_on_floor())|| $Body/RayCast2D2.is_colliding():
 		direction*=-1
 		$Body.scale.x*=-1
 
