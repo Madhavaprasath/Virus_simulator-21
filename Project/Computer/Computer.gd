@@ -5,6 +5,7 @@ onready var tutorial=get_node("TextureRect/Tutorial")
 onready var trash=get_node("TextureRect/Trash")
 onready var hill=get_node("TextureRect/HillCollision")
 onready var virus=get_node("TextureRect/Virus")
+onready var GlitchShader = preload("res://Computer/glitch_effect.shader").duplicate(true)
 
 var allow_new_window := true # To avoid 2 simultaneous windows
 var has_virus_spawned := false
@@ -17,8 +18,7 @@ func _ready():
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])
-	#change_icon("Infected")# you can have 2 modes infected and uninfected one You have to pass the mode in strings
-	#Infected and Uninfected
+	#infect_computer()
 
 func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
@@ -84,6 +84,10 @@ func on_icons_pressed(group,b_name):
 				if not has_virus_spawned:
 					toggle_virus()
 					has_virus_spawned = true
+				toggle_icon_infection(
+					get_tree().get_nodes_in_group("Tutorial")[0],
+					"Infected"
+				)
 		"Internet":
 			OS.shell_open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 		"Trash":
@@ -102,19 +106,42 @@ func toggle_cloud_collision(toggle):
 		var poly=cloud.get_node("CollisionPolygon2D")
 		poly.disabled=toggle
 
-func change_icon(status):
-	for i in get_tree().get_nodes_in_group("Infectable"):
-		var current_group=i.get_groups()
-		var elements=""
-		for element in current_group:
-			if element in ["File","Trash","Tutorial","BackGround","Internet"]:
-				elements=element
-		if elements!="File":
-			if i is TextureRect:
-				i.texture=load(Pc_stats[elements][status])
-			else:
-				i.texture_normal=load(Pc_stats[elements][status])
+# you can have 2 modes infected and uninfected one
+# You have to pass the mode in strings
+# Infected and Uninfected
+func toggle_icon_infection(i, status):
+	var current_group=i.get_groups()
+	var elements=""
+	for element in current_group:
+		if element in ["File","Trash","Tutorial","BackGround","Internet"]:
+			elements=element
+			
+	var resource
+	var has_changed : bool
+	if elements!="File":
+		resource=load(Pc_stats[elements][status])
+		if i is TextureRect:
+			has_changed = not i.texture.load_path == resource.load_path
+			i.texture=resource
 		else:
-			i.texture_normal=load(Pc_stats[elements][status][locked[i.name]])
-		yield(get_tree().create_timer(0.2),"timeout")
-		
+			has_changed = not i.texture_normal.load_path == resource.load_path
+			i.texture_normal=resource
+	else:
+		resource = load(Pc_stats[elements][status][locked[i.name]])
+		has_changed = not i.texture_normal.load_path == resource.load_path
+		i.texture_normal=resource
+	
+	if has_changed:
+		i.material = ShaderMaterial.new()
+		i.material.shader = GlitchShader
+		i.material.set_shader_param("shake_power", 0.176)
+		i.material.set_shader_param("shake_speed", 0.691)
+		i.material.set_shader_param("shake_block", 5.143)
+	
+	yield(get_tree().create_timer(0.5),"timeout")
+	i.material.shader = null
+
+# Not sure when we'll need this! Maybe later
+func infect_computer():
+	for i in get_tree().get_nodes_in_group("Infectable"):
+		toggle_icon_infection(i, "Infected")
