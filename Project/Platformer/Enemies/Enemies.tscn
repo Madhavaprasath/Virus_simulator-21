@@ -22,11 +22,15 @@ script = ExtResource( 1 )
 position = Vector2( 33.7559, -0.631012 )
 enabled = true
 
+[node name="RayCast2D2" type="RayCast2D" parent="Body"]
+position = Vector2( 33.7559, -0.631012 )
+enabled = true
+cast_to = Vector2( 100, 0 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -37,8 +41,6 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
-
-[node name="Gun" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

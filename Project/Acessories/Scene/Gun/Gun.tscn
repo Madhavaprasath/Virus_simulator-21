@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Acessories/Weapons_sprites/g_un.png" type="Texture" id=1]
+[ext_resource path="res://Acessories/Weapon_bullet/Virus_bullet/Virus_bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Acessories/Scene/Gun/Gun.gd" type="Script" id=3]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource( 3 )
+Bullet = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 34, 0 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 77.1617, -3.53953 )
