@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://Platformer/Enemies/Enemies.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Platformer/Enemies/Grenade_enemy/Grenade_enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -32,11 +32,12 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="TileMap" type="TileMap"]
 tile_set = SubResource( 2 )
+collision_mask = 9
 format = 1
-tile_data = PoolIntArray( 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0 )
-
-[node name="Enemies" parent="." instance=ExtResource( 2 )]
-position = Vector2( 162.921, 529.197 )
+tile_data = PoolIntArray( 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0 )
 
 [node name="Virus" parent="." instance=ExtResource( 3 )]
 position = Vector2( 485.196, 516.116 )
+
+[node name="Grenade_launcher" parent="." instance=ExtResource( 2 )]
+position = Vector2( 186.413, 545.07 )
