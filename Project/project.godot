@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Virus Simulator"
-run/main_scene="res://Computer/Computer.tscn"
+run/main_scene="res://Title_screen/Title_screen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

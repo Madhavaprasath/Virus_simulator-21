@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Title_screen/Title_screen.gd" type="Script" id=1]
+[ext_resource path="res://Title_screen/start_page.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 164.21, 32.8377 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 166.966, 32.3377 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 87.9497, 18.1206 )
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.749146
+margin_top = -0.749176
+margin_right = -0.749146
+margin_bottom = -0.749146
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="User1" type="Area2D" parent="TextureRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/User1"]
+position = Vector2( 753.369, 219.305 )
+shape = SubResource( 1 )
+
+[node name="User2" type="Area2D" parent="TextureRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/User2"]
+position = Vector2( 752.783, 297.587 )
+shape = SubResource( 2 )
+
+[node name="TurnOff" type="Area2D" parent="TextureRect"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/TurnOff"]
+position = Vector2( 125.505, 550.448 )
+shape = SubResource( 3 )
+
+[connection signal="input_event" from="TextureRect/User1" to="." method="_on_User1_input_event"]
+[connection signal="input_event" from="TextureRect/User2" to="." method="_on_User2_input_event"]
+[connection signal="input_event" from="TextureRect/TurnOff" to="." method="_on_TurnOff_input_event"]
