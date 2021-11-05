@@ -1,5 +1,5 @@
 extends Node
-
+signal spwan_bullet_direction(bullet,position,dir,rotation,mode)
 var pc_stats={
 	"File":{
 		"Infected":{
@@ -36,3 +36,4 @@ var locked_status={
 	"Area4":"Locked",
 	"Finale":"Locked"
 }
+

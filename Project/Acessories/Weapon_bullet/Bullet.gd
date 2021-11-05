@@ -7,7 +7,7 @@ export (int) var Speed=400
 func _physics_process(delta):
 	if shot:
 		position+=(direction*Speed)*delta
-func start(dir,target_position):
+func start(dir):
 	rotation=dir.angle()
 	direction=dir
 	shot=true

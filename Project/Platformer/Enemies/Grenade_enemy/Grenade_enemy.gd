@@ -6,13 +6,12 @@ func _ready():
 	pass
 func Attack_player():
 	if player:
-		var direction=global_position.direction_to(player.global_position-Vector2(100,0))
-		$Body.scale.x=sign(direction.x)
+		var dir=global_position.direction_to(player.global_position)
+		direction=dir.x
+		$Body.scale.x=sign(dir.x)
 		velocity=Vector2()
-		var c_g=grenade.instance()
-		c_g.global_position=get_node("Body/Grenede_launcher/Position2D").global_position
-		c_g.start(Vector2(direction.x,0),player.global_position)
-		get_parent().add_child(c_g)
+		var pos=get_node("Body/Grenede_launcher/Position2D").global_position
+		Global.emit_signal("spwan_bullet_direction",grenade,pos,dir,0,1)
 		$reload_timer.start()
 
 func _on_reload_timer_timeout():

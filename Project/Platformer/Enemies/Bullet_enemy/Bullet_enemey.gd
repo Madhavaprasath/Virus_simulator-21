@@ -9,10 +9,7 @@ func Attack_player():
 		var dir=global_position.direction_to(player.global_position)
 		$Body.scale.x=sign(dir.x)
 		velocity=Vector2()
-		var c_g=Bullet.instance()
-		c_g.global_position=get_node("Body/Gun/Position2D").global_position
-		c_g.start(Vector2(dir.x,0),player.global_position)
-		get_parent().add_child(c_g)
+		Global.emit_signal("spwan_bullet_direction",get_node("Body/Gun/Position2D").global_position,Vector2(dir.x,0),0,1)
 		$reload_timer.start()
 
 func _on_reload_timer_timeout():

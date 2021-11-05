@@ -22,9 +22,13 @@ func _ready():
 	pass
 
 func _physics_process(delta):
+	if !current_state in [ATTACK,IDLE]:
+		$Sprite.rotation_degrees=lerp($Sprite.rotation_degrees,$Sprite.rotation_degrees+(15*direction),0.8)
+	if current_state in [IDLE,WALK]:
+		velocity=move_and_slide(velocity,Vector2.UP)
 	match_state(delta)
+	check_direction()
 	velocity.y+=base_gravity*delta
-	velocity=move_and_slide(velocity,Vector2.UP)
 func match_state(delta):
 	match current_state:
 		IDLE:
@@ -33,19 +37,17 @@ func match_state(delta):
 				current_state=ATTACK
 		WALK:
 			velocity.x=Speed*direction
-			print(velocity)
-			$Sprite.rotation_degrees=lerp($Sprite.rotation_degrees,$Sprite.rotation_degrees+(15*direction),0.8)
-			check_direction()
 			if player:
 				current_state=ATTACK
 		ATTACK:
 			if can_shoot:
+				velocity=Vector2()
 				Attack_player()
 				can_shoot=false
 			if player==null:
 				current_state=WALK
 func Attack_player():
-	velocity=Vector2()
+	pass
 
 func check_direction():
 	if (!$Body/RayCast2D.is_colliding() && is_on_floor())|| $Body/RayCast2D2.is_colliding():

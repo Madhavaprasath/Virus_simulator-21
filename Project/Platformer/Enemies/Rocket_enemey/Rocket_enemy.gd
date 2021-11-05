@@ -10,12 +10,8 @@ func Attack_player():
 		var direction=global_position.direction_to(player.global_position-Vector2(100,0))
 		$Body.scale.x=sign(direction.x)
 		velocity=Vector2()
-		var c_g=Rockets.instance()
-		c_g.global_position=get_node("Body/Rocket/Position2D").global_position
-		c_g.fired=true
-		c_g.rotation=90*sign(direction.x)
-		c_g.tracking_target=player
-		get_parent().add_child(c_g)
+		var pos=get_node("Body/Rocket/Position2D").global_position
+		Global.emit_signal("spwan_bullet_direction",pos,player,90*sign(direction.x),2)
 		$reload_timer.start()
 
 func _on_reload_timer_timeout():
