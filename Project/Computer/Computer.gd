@@ -24,9 +24,6 @@ func toggle_virus():
 	virus.set_physics_process(not virus.is_physics_processing())
 	virus.visible = not virus.visible
 
-func unlock_area():
-	pass #TODO
-
 func toggle_collisions(body, state=null):
 	if not body:
 		return
@@ -155,3 +152,11 @@ func toggle_all_icons(status):
 func _on_Pc_gui_input(event):
 	if (event is InputEventMouseButton && event.pressed):
 		$MouseClick.play()
+
+
+func unlock_area(i):
+	toggle_icon_infection(i, "Uninfected")
+
+func _on_Virus_area_unlocked(area):
+	Global.locked_status[area.name] = "Unlocked"
+	unlock_area(area.get_parent())

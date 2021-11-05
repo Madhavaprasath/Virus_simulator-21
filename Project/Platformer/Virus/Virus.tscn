@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Platformer/Virus/MC_virus_sprite_5.png" type="Texture" id=1]
 [ext_resource path="res://Platformer/Virus/Virus.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 58.0345
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 57.4279
 
 [node name="Virus" type="KinematicBody2D" groups=[
 "virus",
@@ -27,3 +30,8 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="VirusArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VirusArea"]
+shape = SubResource( 2 )
