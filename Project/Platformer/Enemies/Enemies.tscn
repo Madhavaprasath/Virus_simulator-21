@@ -11,6 +11,7 @@ radius = 258.644
 
 [node name="Enemies" type="KinematicBody2D" groups=[
 "Enemies",
+"can_damage",
 ]]
 scale = Vector2( 0.35, 0.35 )
 collision_layer = 4

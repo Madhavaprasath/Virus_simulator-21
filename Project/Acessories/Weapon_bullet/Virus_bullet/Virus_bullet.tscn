@@ -49,6 +49,7 @@ scale = Vector2( 3, 3 )
 z_index = 5
 script = ExtResource( 2 )
 Speed = 600
+damage = 10
 
 [node name="Sprite" parent="." index="0"]
 material = SubResource( 2 )
