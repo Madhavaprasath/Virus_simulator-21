@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/boss_battle_VERY_LITTLE_PIECE_OF_SH.mp3-ca13f479d28ae33cc51d06debdf5edee.mp3str"
+
+[deps]
+
+source_file="res://Platformer/Scenes/Finale/boss_battle_VERY_LITTLE_PIECE_OF_SH.mp3"
+dest_files=[ "res://.import/boss_battle_VERY_LITTLE_PIECE_OF_SH.mp3-ca13f479d28ae33cc51d06debdf5edee.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
