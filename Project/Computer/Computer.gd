@@ -55,6 +55,7 @@ func get_group_element(group):
 			return g
 
 func on_icons_pressed(group,b_name):
+	$MouseClick.play()
 	var element = get_group_element(group)
 	match element:
 		"File":
@@ -135,13 +136,14 @@ func toggle_icon_infection(i, status):
 		i.texture_normal=resource
 	
 	if status == 'Infected' and has_changed:
+		$Glitch.play()
 		i.material = ShaderMaterial.new()
 		i.material.shader = GlitchShader
-		i.material.set_shader_param("shake_power", 0.176)
-		i.material.set_shader_param("shake_speed", 0.691)
-		i.material.set_shader_param("shake_block", 5.143)
+		i.material.set_shader_param("shake_power", 0.157)
+		i.material.set_shader_param("shake_rate	", 0.933)
+		i.material.set_shader_param("shake_block", 1.237)
 		
-		yield(get_tree().create_timer(0.5),"timeout")
+		yield(get_tree().create_timer(1.5),"timeout")
 		i.material.shader = null
 
 

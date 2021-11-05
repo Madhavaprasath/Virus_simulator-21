@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Level_1_we.mp3-c94138b61f9584f674bd5cc81359d0c0.mp3str"
+
+[deps]
+
+source_file="res://Platformer/Scenes/Area1/Level_1_we.mp3"
+dest_files=[ "res://.import/Level_1_we.mp3-c94138b61f9584f674bd5cc81359d0c0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

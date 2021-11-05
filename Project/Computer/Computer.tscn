@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Computer/Icons/AchievementsButton.png" type="Texture" id=1]
 [ext_resource path="res://Computer/Icons/folder.png" type="Texture" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Computer/period.png" type="Texture" id=19]
 [ext_resource path="res://Computer/click.wav" type="AudioStream" id=20]
+[ext_resource path="res://Computer/Welcome.wav" type="AudioStream" id=21]
+[ext_resource path="res://Computer/Glitch - Sound Effect (HD)_160k.mp3" type="AudioStream" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 221, 34 )
@@ -548,5 +550,12 @@ polygon = PoolVector2Array( 0, 600, 1, 600, 1, 1, 1023, 1, 1023, 600, 1024, 600,
 
 [node name="MouseClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+autoplay = true
+
+[node name="Glitch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
 
 [connection signal="gui_input" from="." to="." method="_on_Pc_gui_input"]

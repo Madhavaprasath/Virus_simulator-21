@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Glitch - Sound Effect (HD)_160k.mp3-36837705ddc77863482d6278140b3797.mp3str"
+
+[deps]
+
+source_file="res://Computer/Glitch - Sound Effect (HD)_160k.mp3"
+dest_files=[ "res://.import/Glitch - Sound Effect (HD)_160k.mp3-36837705ddc77863482d6278140b3797.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
