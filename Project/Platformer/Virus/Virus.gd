@@ -8,6 +8,8 @@ var _velocity := Vector2.ZERO
 
 onready var camera := $Camera2D
 
+signal area_unlocked(area)
+
 enum states{
 	IDLE,
 	MOVE,
@@ -44,6 +46,11 @@ func _physics_process(delta: float) -> void:
 		if hill:
 			hill.disabled = false
 			is_hill_disabled = false
+			
+	var overlapping = $VirusArea.get_overlapping_areas()
+	if len(overlapping):
+		if 'Area' in overlapping[0].name && Input.is_action_pressed("action"):
+			emit_signal("area_unlocked", overlapping[0])
 
 func flip_raycast():
 	if input_direction_x!=0:
