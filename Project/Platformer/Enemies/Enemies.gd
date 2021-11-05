@@ -16,6 +16,7 @@ var base_gravity := 1200.0
 var player=null
 var can_shoot=true
 
+export (int) var health=10
 onready var body=get_node("Body")
 
 func _ready():
@@ -78,3 +79,9 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if body.is_in_group("virus"):
 		player=null
+
+func change_health(damage):
+	health-=damage
+	emit_signal("change_health",health)
+	if health<=0:
+		queue_free()

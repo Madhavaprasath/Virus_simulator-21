@@ -6,9 +6,15 @@ var base_gravity := 1000.0
 
 var _velocity := Vector2.ZERO
 
+var health=100.0
+var current_weapon=""
+
 onready var camera := $Camera2D
 
+
 signal area_unlocked(area)
+signal change_health(damage)
+signal change_camera()
 
 enum states{
 	IDLE,
@@ -161,3 +167,17 @@ func stomping():
 			var dot=Vector2(0,-1).dot(collision.normal)
 			if abs(dot)==1:
 				_velocity.y=-jump_impulse
+
+func change_health(damage):
+	health-=damage
+	emit_signal("change_health",health)
+	if health<=0:
+		on_dead()
+
+func on_dead():
+	queue_free()
+	print("dead")
+	pass
+
+
+

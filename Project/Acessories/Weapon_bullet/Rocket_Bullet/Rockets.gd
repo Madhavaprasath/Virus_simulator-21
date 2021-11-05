@@ -11,6 +11,7 @@ var target_position
 var fired=false
 var tracking_target
 
+export(int) var damage=20
 
 
 func _physics_process(delta):
@@ -36,6 +37,8 @@ func _on_Timer_timeout():
 
 
 func _on_Rocket_body_entered(body):
+	if body.is_in_group("can_damage"):
+		body.change_health(damage)
 	queue_free()
 
 

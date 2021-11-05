@@ -5,6 +5,7 @@ var shot=false
 var velocity=Vector2()
 var exploded =false
 export (int) var Speed=400
+export (int) var damage=15
 var states=["Shoot","Explode"]
 var current_state=""
 
@@ -32,7 +33,10 @@ func initiate_explotion():
 
 func _on_Timer_timeout():
 	$destruction_area/CollisionShape2D.set_deferred("disabled",false)
+	yield(get_tree().create_timer(0.2),"timeout")
 	queue_free()
 
 func _on_destruction_area_body_entered(body):
-	pass # Replace with function body.
+	print(body.name)
+	if body.is_in_group("can_damage"):
+		body.change_health(damage)

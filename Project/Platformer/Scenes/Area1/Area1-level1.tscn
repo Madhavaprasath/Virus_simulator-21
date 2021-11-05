@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Platformer/Scenes/assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Platformer/Scenes/assets/middle ground 2.png" type="Texture" id=6]
 [ext_resource path="res://Platformer/Scenes/Area1/Level_1_we.mp3" type="AudioStream" id=7]
 [ext_resource path="res://Platformer/Scenes/Area1/Area1-level1.gd" type="Script" id=8]
+[ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -275,3 +276,5 @@ centered = false
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
+
+[node name="Camera2D" parent="." instance=ExtResource( 9 )]
