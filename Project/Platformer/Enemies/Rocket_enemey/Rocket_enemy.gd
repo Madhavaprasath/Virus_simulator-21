@@ -4,6 +4,7 @@ onready var Rockets=get_node("Body/Rocket").Rockets
 
 func _ready():
 	pass
+
 func Attack_player():
 	if player:
 		var direction=global_position.direction_to(player.global_position-Vector2(100,0))

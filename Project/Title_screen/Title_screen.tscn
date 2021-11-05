@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Title_screen/Title_screen.gd" type="Script" id=1]
 [ext_resource path="res://Title_screen/start_page.png" type="Texture" id=2]
+[ext_resource path="res://Title_screen/Welcome.wav" type="AudioStream" id=3]
+[ext_resource path="res://Title_screen/login.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Title_screen/goodbye.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 164.21, 32.8377 )
@@ -52,6 +55,16 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/TurnOff"]
 position = Vector2( 125.505, 550.448 )
 shape = SubResource( 3 )
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+
+[node name="Login" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Goodbye" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="input_event" from="TextureRect/User1" to="." method="_on_User1_input_event"]
 [connection signal="input_event" from="TextureRect/User2" to="." method="_on_User2_input_event"]

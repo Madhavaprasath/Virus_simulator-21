@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Platformer/Scenes/assets/tiles.png" type="Texture" id=1]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Platformer/Scenes/assets/foreground 2.png" type="Texture" id=4]
 [ext_resource path="res://Platformer/Scenes/assets/5 farground.png" type="Texture" id=5]
 [ext_resource path="res://Platformer/Scenes/assets/middle ground 2.png" type="Texture" id=6]
+[ext_resource path="res://Platformer/Scenes/Area1/ONLY_IN_INTERNET_LEVEL_1.mp3" type="AudioStream" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -268,3 +269,7 @@ motion_mirroring = Vector2( 1024, 600 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 texture = ExtResource( 4 )
 centered = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true

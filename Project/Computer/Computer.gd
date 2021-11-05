@@ -148,3 +148,8 @@ func toggle_icon_infection(i, status):
 func toggle_all_icons(status):
 	for i in get_tree().get_nodes_in_group("Infectable"):
 		toggle_icon_infection(i, status)
+
+
+func _on_Pc_gui_input(event):
+	if (event is InputEventMouseButton && event.pressed):
+		$MouseClick.play()
