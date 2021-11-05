@@ -7,8 +7,10 @@ var base_gravity := 1000.0
 var _velocity := Vector2.ZERO
 
 var health=100.0
+var current_weapon=""
 
 onready var camera := $Camera2D
+
 
 signal area_unlocked(area)
 signal change_health(damage)
@@ -178,5 +180,4 @@ func on_dead():
 	pass
 
 
-func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("change_camera")
+
