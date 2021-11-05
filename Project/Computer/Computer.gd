@@ -155,8 +155,26 @@ func _on_Pc_gui_input(event):
 
 
 func unlock_area(i):
+	$Unlock.play()
 	toggle_icon_infection(i, "Uninfected")
 
 func _on_Virus_area_unlocked(area):
+	var prev_status = Global.locked_status[area.name]
 	Global.locked_status[area.name] = "Unlocked"
-	unlock_area(area.get_parent())
+	if prev_status == "Locked":
+		$Unlock.play()
+		glitch_background()
+		unlock_area(area.get_parent())
+
+func glitch_background():
+	var glitched = load("res://Computer/BackGround/BackgroundHELP.png")
+	var normal = load("res://Computer/BackGround/Background.png")
+	$TextureRect.set_texture(glitched)
+	yield(get_tree().create_timer(0.5), "timeout")
+	$TextureRect.set_texture(normal)
+	yield(get_tree().create_timer(0.3), "timeout")
+	$TextureRect.set_texture(glitched)
+	yield(get_tree().create_timer(0.2), "timeout")
+	$TextureRect.set_texture(normal)
+	yield(get_tree().create_timer(0.2), "timeout")
+
