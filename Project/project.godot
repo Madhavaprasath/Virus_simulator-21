@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Virus Simulator"
 run/main_scene="res://Title_screen/Title_screen.tscn"
-config/icon="res://icon.png"
+config/icon="res://game_icon.png"
 
 [autoload]
 
