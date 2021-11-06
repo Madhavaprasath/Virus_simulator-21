@@ -4,7 +4,7 @@
 [ext_resource path="res://Acessories/Weapon_bullet/Rocket_Bullet/trail.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, -12.0, 0, 0, Vector2( 1, 1 ), -1.81818, 0.0, 0, 0 ]
+_data = [ Vector2( 0.0222222, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0.536913, 1 )

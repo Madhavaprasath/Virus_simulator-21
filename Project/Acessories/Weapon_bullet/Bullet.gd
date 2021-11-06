@@ -5,6 +5,8 @@ var shot=false
 export (int) var Speed=400
 export (int) var damage=5
 
+
+
 func _physics_process(delta):
 	if shot:
 		position+=(direction*Speed)*delta

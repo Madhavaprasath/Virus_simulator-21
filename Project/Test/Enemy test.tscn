@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Platformer/Enemies/Rocket_enemey/Rocket_enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Platformer/Enemies/Bullet_enemy/Bullet_enemey.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Platformer/Enemies/Grenade_enemy/Grenade_enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Pickups/2xJump.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -56,3 +57,8 @@ position = Vector2( 182.228, 487.353 )
 position = Vector2( 2013.88, 84.9562 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 2 )]
+
+[node name="Pickup" type="Node2D" parent="."]
+
+[node name="2xJump" parent="Pickup" instance=ExtResource( 8 )]
+position = Vector2( 979.772, 244.276 )

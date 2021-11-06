@@ -9,12 +9,14 @@ var _velocity := Vector2.ZERO
 var health=100.0
 var current_weapon=""
 var current_gun
-
-
-
+var can_shoot=true
+var ammo=0
+var max_ammo=0
 signal area_unlocked(area)
 signal change_health(damage)
 signal change_camera()
+signal change_ammo(ammo)
+signal change_max_ammo(ammo)
 
 enum states{
 	IDLE,
@@ -36,7 +38,8 @@ onready var weapons=get_node("Raycast/weapons")
 
 func _ready():
 	current_state = states.IDLE
-	change_gun("Grenede_launcher")
+
+
 func _physics_process(delta: float) -> void:
 	stomping()
 	input_direction_x = check_input()
@@ -153,8 +156,11 @@ func _unhandled_input(event):
 		_velocity.y =- jump_impulse
 	if event.is_action_pressed("move_down") && is_on_floor():
 		drop()
-	if event.is_action("ui_click") && current_gun!=null:
+	if event.is_action("ui_click") && current_gun!=null && can_shoot && ammo>0:
 		shoot()
+		ammo-=1
+		emit_signal("change_ammo",ammo)
+		can_shoot=false
 
 func raycast_colliding():
 	if raycast.is_colliding():
@@ -166,7 +172,6 @@ func raycast_colliding():
 func stomping():
 	pass
 func change_health(damage):
-	print("Hello")
 	health-=damage
 	emit_signal("change_health",health)
 	if health<=0:
@@ -177,21 +182,38 @@ func shoot():
 	match current_gun.name:
 		"Grenede_launcher":
 			var dir=global_position.direction_to(get_global_mouse_position())
-			print(dir)
 			bullet=current_gun.grenade
 			var pos=current_gun.get_node("Position2D").global_position
+			$Reload_timer.start(3)
 			Global.emit_signal("spwan_bullet_direction",bullet,pos,dir,get_global_mouse_position(),3)
 		"Rocket":
 			bullet=current_gun.Rockets
+			var pos=current_gun.get_node("Position2D").global_position
+			var dir=Vector2($Raycast.scale.x,0)
+			Global.emit_signal("spwan_bullet_direction",bullet,pos,dir,0,1)
+			$Reload_timer.start(5)
 		"Gun":
 			bullet=current_gun.Bullet
 			var pos=current_gun.get_node("Position2D").global_position
 			var dir=Vector2($Raycast.scale.x,0)
 			Global.emit_signal("spwan_bullet_direction",bullet,pos,dir,0,1)
-
+			$Reload_timer.start(1)
 func change_gun(gun_name):
 	activate(gun_name)
+	set_ammo(gun_name)
+	emit_signal("change_max_ammo",max_ammo)
 
+func set_ammo(gun_name):
+	match gun_name:
+		"Rocket":
+			ammo=7
+			max_ammo=7
+		"Grenede_launcher":
+			ammo=12
+			max_ammo=12
+		"Gun":
+			ammo=25
+			max_ammo=25
 func activate(gun_name):
 	for i in weapons.get_children():
 		if i.name==gun_name:
@@ -199,14 +221,22 @@ func activate(gun_name):
 			current_gun=i
 		else:
 			i.visible=false
-	pass
 
+
+func add_health(ammount):
+	health+=ammount
+	if health>100:
+		health=100
+	emit_signal("change_health",health)
 func on_dead():
 	queue_free()
 	print("dead")
-	pass
 
 
 
 
 
+
+
+func _on_Reload_timer_timeout():
+	can_shoot=true

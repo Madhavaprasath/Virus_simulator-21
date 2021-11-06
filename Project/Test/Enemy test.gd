@@ -19,7 +19,6 @@ func _spwan_bullet_direction(bullet,pos,dir,rot=0,mode=1):
 	elif mode==3:
 		var child_bullet=bullet.instance()
 		child_bullet.position=pos
-		print(rot,"Rotate")
 		child_bullet.target=rot
 		print(child_bullet.target)
 		child_bullet.start(dir)
