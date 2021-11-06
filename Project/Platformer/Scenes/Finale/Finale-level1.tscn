@@ -16,9 +16,9 @@ autoplay = true
 texture = ExtResource( 4 )
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="WALLS" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WALLS"]
 polygon = PoolVector2Array( 70, 267, 70, 529, 1017, 529, 1017, 41, 70, 43, 70, 265, 55, 265, 55, 26, 1025, 27, 1028, 541, 56, 540, 56, 267 )
 
 [node name="Virus" parent="." instance=ExtResource( 2 )]

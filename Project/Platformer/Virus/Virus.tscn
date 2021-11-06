@@ -52,6 +52,4 @@ position = Vector2( 0, 25 )
 [node name="Gun" parent="weapons" instance=ExtResource( 5 )]
 position = Vector2( 0, 25 )
 
-[connection signal="change_health" from="." to="CanvasLayer/HealthUI" method="on_health_updated"]
-
 [editable path="CanvasLayer"]
