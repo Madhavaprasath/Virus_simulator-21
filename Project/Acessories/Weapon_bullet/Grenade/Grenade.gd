@@ -10,6 +10,7 @@ export (int) var Speed=400
 export (int) var damage=15
 var states=["Shoot","Explode"]
 var current_state=""
+onready var explosion=get_node("Explosion/AnimationPlayer")
 
 func _physics_process(delta):
 	if moving:
@@ -41,6 +42,9 @@ func initiate_explotion():
 func _on_Timer_timeout():
 	$destruction_area/CollisionShape2D.set_deferred("disabled",false)
 	yield(get_tree().create_timer(0.2),"timeout")
+	$Sprite.visible=false
+	explosion.play("Explode")
+	yield(explosion,"animation_finished")
 	queue_free()
 
 func set_target(tar):

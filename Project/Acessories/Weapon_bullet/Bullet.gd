@@ -27,4 +27,8 @@ func _on_Timer_timeout():
 func _on_Bullets_body_entered(body):
 	if body.is_in_group("can_damage"):
 		body.change_health(damage)
+	rocketmechs()
 	destroy_mechs()
+
+func rocketmechs():
+	pass

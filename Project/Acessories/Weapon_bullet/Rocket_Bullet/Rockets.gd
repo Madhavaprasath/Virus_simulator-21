@@ -13,6 +13,7 @@ var tracking_target
 
 export(int) var damage=20
 
+onready var explotion=get_node("Sprite/AnimationPlayer")
 
 func _physics_process(delta):
 	if fired:
@@ -39,6 +40,10 @@ func _on_Timer_timeout():
 func _on_Rocket_body_entered(body):
 	if body.is_in_group("can_damage"):
 		body.change_health(damage)
+	$Rocket.visible=false
+	fired=false
+	explotion.play("Explode")
+	yield(explotion,"animation_finished")
 	queue_free()
 
 

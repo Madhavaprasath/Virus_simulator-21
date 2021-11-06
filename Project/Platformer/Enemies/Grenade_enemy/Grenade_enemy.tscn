@@ -26,6 +26,7 @@ tracks/0/keys = {
 position = Vector2( 170.413, 176.07 )
 scale = Vector2( 0.7, 0.7 )
 script = ExtResource( 4 )
+health = 55
 
 [node name="RayCast2D" parent="Body" index="0"]
 position = Vector2( 64.273, 15 )

@@ -38,7 +38,7 @@ onready var weapons=get_node("Raycast/weapons")
 
 func _ready():
 	current_state = states.IDLE
-
+	change_gun("Gun")
 
 func _physics_process(delta: float) -> void:
 	stomping()

@@ -64,11 +64,35 @@ var fights_script = [
 		"impulse": Vector2(-400, 400),
 		"flip_h": false,
 	}],
+	["pencil_barrage1", 1], # Function name, wait time before calling it
+	["pencil_barrage2", 0.2],
+	["pencil_barrage3", 1.5],
+	["pencil_railgun", 2, {
+		"pos": Vector2(180, 149),
+		"impulse": Vector2(400, 400),
+		"flip_h": true,
+	}], # Third argument is for parameters
+	["pencil_railgun", 0.4, {
+		"pos": Vector2(959, 303),
+		"impulse": Vector2(-400, 400),
+		"flip_h": false,
+	}],
+	["pencil_railgun", 0.5, {
+		"pos": Vector2(180, 250),
+		"impulse": Vector2(400, 400),
+		"flip_h": true,
+	}],
+	["pencil_railgun", 0.3, {
+		"pos": Vector2(959, 403),
+		"impulse": Vector2(-400, 400),
+		"flip_h": false,
+	}],
+	
 ]
 
 func _ready():
 	virus.get_node("CanvasLayer/HealthUI").visible = false
-	virus.get_node("weapons").visible = false
+	virus.get_node("Raycast/weapons").visible = false
 	next_fight()
 	
 func next_fight():
