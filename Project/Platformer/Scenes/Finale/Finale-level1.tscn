@@ -23,7 +23,7 @@ centered = false
 polygon = PoolVector2Array( 70, 267, 70, 529, 1017, 529, 1017, 41, 70, 43, 70, 265, 55, 265, 55, 26, 1025, 27, 1028, 541, 56, 540, 56, 267 )
 
 [node name="Virus" parent="." instance=ExtResource( 2 )]
-position = Vector2( 541, 305 )
+position = Vector2( 531, 304 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 
