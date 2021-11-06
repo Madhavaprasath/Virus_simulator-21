@@ -20,14 +20,12 @@ position = Vector2( 70, 16 )
 
 [node name="Gun" parent="Body" index="1" instance=ExtResource( 3 )]
 position = Vector2( 16.2271, 12.0908 )
-scale = Vector2( 1, 1 )
 z_index = 1
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="2"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

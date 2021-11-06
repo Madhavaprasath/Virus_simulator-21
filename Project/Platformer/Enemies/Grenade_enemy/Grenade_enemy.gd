@@ -11,7 +11,7 @@ func Attack_player():
 		$Body.scale.x=sign(dir.x)
 		velocity=Vector2()
 		var pos=get_node("Body/Grenede_launcher/Position2D").global_position
-		Global.emit_signal("spwan_bullet_direction",grenade,pos,dir,0,1)
+		Global.emit_signal("spwan_bullet_direction",grenade,pos,dir,player.global_position,3)
 		$reload_timer.start()
 
 func _on_reload_timer_timeout():

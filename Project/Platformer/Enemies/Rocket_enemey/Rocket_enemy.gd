@@ -11,7 +11,7 @@ func Attack_player():
 		$Body.scale.x=sign(direction.x)
 		velocity=Vector2()
 		var pos=get_node("Body/Rocket/Position2D").global_position
-		Global.emit_signal("spwan_bullet_direction",pos,player,90*sign(direction.x),2)
+		Global.emit_signal("spwan_bullet_direction",Rockets,pos,player,90*sign(direction.x),2)
 		$reload_timer.start()
 
 func _on_reload_timer_timeout():

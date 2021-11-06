@@ -8,8 +8,8 @@ var _velocity := Vector2.ZERO
 
 var health=100.0
 var current_weapon=""
+var current_gun
 
-onready var camera := $Camera2D
 
 
 signal area_unlocked(area)
@@ -32,10 +32,11 @@ var is_hill_disabled := false
 var hill_collision := false
 
 onready var raycast=get_node("Raycast/RayCast2D")
+onready var weapons=get_node("Raycast/weapons")
 
 func _ready():
 	current_state = states.IDLE
-
+	change_gun("Grenede_launcher")
 func _physics_process(delta: float) -> void:
 	stomping()
 	input_direction_x = check_input()
@@ -152,6 +153,8 @@ func _unhandled_input(event):
 		_velocity.y =- jump_impulse
 	if event.is_action_pressed("move_down") && is_on_floor():
 		drop()
+	if event.is_action("ui_click") && current_gun!=null:
+		shoot()
 
 func raycast_colliding():
 	if raycast.is_colliding():
@@ -161,23 +164,49 @@ func raycast_colliding():
 	return false
 
 func stomping():
-	for i in get_slide_count():
-		var collision=get_slide_collision(i)
-		if collision.collider.is_in_group("Enemies"):
-			var dot=Vector2(0,-1).dot(collision.normal)
-			if abs(dot)==1:
-				_velocity.y=-jump_impulse
-
+	pass
 func change_health(damage):
+	print("Hello")
 	health-=damage
 	emit_signal("change_health",health)
 	if health<=0:
 		on_dead()
 
+func shoot():
+	var bullet
+	match current_gun.name:
+		"Grenede_launcher":
+			var dir=global_position.direction_to(get_global_mouse_position())
+			print(dir)
+			bullet=current_gun.grenade
+			var pos=current_gun.get_node("Position2D").global_position
+			Global.emit_signal("spwan_bullet_direction",bullet,pos,dir,get_global_mouse_position(),3)
+		"Rocket":
+			bullet=current_gun.Rockets
+		"Gun":
+			bullet=current_gun.Bullet
+			var pos=current_gun.get_node("Position2D").global_position
+			var dir=Vector2($Raycast.scale.x,0)
+			Global.emit_signal("spwan_bullet_direction",bullet,pos,dir,0,1)
+
+func change_gun(gun_name):
+	activate(gun_name)
+
+func activate(gun_name):
+	for i in weapons.get_children():
+		if i.name==gun_name:
+			i.visible=true
+			current_gun=i
+		else:
+			i.visible=false
+	pass
+
 func on_dead():
 	queue_free()
 	print("dead")
 	pass
+
+
 
 
 
