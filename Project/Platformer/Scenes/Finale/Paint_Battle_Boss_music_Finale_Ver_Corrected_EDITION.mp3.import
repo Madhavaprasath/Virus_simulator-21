@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Paint_Battle_Boss_music_Finale_Ver_Corrected_EDITION.mp3-ae93a6c8c4cfae5632dca75b22d05f9f.mp3str"
+
+[deps]
+
+source_file="res://Platformer/Scenes/Finale/Paint_Battle_Boss_music_Finale_Ver_Corrected_EDITION.mp3"
+dest_files=[ "res://.import/Paint_Battle_Boss_music_Finale_Ver_Corrected_EDITION.mp3-ae93a6c8c4cfae5632dca75b22d05f9f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

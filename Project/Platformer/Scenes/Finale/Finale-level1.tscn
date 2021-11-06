@@ -3,7 +3,7 @@
 [ext_resource path="res://Platformer/Scenes/Finale/boss_battle_VERY_LITTLE_PIECE_OF_SH.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Platformer/Scenes/Finale/Finale-level1.gd" type="Script" id=3]
-[ext_resource path="res://Platformer/Scenes/Finale/peint.png" type="Texture" id=4]
+[ext_resource path="res://Platformer/Scenes/Finale/mspaint.png" type="Texture" id=4]
 [ext_resource path="res://Computer/Glitch - Sound Effect (HD)_160k.mp3" type="AudioStream" id=5]
 
 [node name="Finale" type="Node2D"]
@@ -14,13 +14,14 @@ stream = ExtResource( 1 )
 autoplay = true
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 centered = false
 
 [node name="WALLS" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WALLS"]
-polygon = PoolVector2Array( 70, 267, 70, 529, 1017, 529, 1017, 41, 70, 43, 70, 265, 55, 265, 55, 26, 1025, 27, 1028, 541, 56, 540, 56, 267 )
+polygon = PoolVector2Array( 118, 265, 119, 513, 992, 500, 979, 66, 117, 59, 118, 258, 55, 265, 55, 26, 1025, 27, 1028, 541, 56, 540, 56, 267 )
 
 [node name="Virus" parent="." instance=ExtResource( 2 )]
 position = Vector2( 531, 304 )

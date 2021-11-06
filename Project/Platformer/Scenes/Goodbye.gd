@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 
 # Declare member variables here. Examples:
@@ -14,3 +14,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if (event is InputEventMouseButton && event.pressed):
+		OS.shell_open("https://drive.google.com/drive/folders/1jgtz2BikOdaaP6-9f5CujPuHUSSjGcEY?usp=sharing")

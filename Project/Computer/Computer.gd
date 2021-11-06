@@ -16,7 +16,7 @@ var locked=Global.locked_status
 
 func _ready():
 	virus.get_node("CanvasLayer/HealthUI").visible = false
-	virus.get_node("weapons").visible = false
+	virus.get_node("Raycast/weapons").visible = false
 	toggle_virus()
 	for button in get_tree().get_nodes_in_group("Icons"):
 		button.connect("pressed",self,"on_icons_pressed",[button.get_groups(),button.name])

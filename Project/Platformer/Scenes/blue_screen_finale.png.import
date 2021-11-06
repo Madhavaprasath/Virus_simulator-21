@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1 SOLID color.png-68a58f79df2b20a43585aea8f9cf8e2d.stex"
+path="res://.import/blue_screen_finale.png-3f8ae764014430396d1f4b8bfed9834a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Platformer/Scenes/assets/1 SOLID color.png"
-dest_files=[ "res://.import/1 SOLID color.png-68a58f79df2b20a43585aea8f9cf8e2d.stex" ]
+source_file="res://Platformer/Scenes/blue_screen_finale.png"
+dest_files=[ "res://.import/blue_screen_finale.png-3f8ae764014430396d1f4b8bfed9834a.stex" ]
 
 [params]
 

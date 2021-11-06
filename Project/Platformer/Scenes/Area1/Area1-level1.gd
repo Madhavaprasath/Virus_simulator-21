@@ -15,3 +15,7 @@ func _spwan_bullet_direction(bullet,position,dir,rotation=0,mode=1):
 		c_g.fired=true
 		c_g.rotation=rotation
 		c_g.tracking_target=dir
+
+
+func _on_Area2D_body_entered(body):
+	get_tree().change_scene("res://Platformer/Scenes/Finale/Finale-level1.tscn")
