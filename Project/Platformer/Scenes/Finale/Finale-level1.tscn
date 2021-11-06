@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Platformer/Scenes/Finale/boss_battle_VERY_LITTLE_PIECE_OF_SH.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Platformer/Virus/Virus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Platformer/Scenes/Finale/Finale-level1.gd" type="Script" id=3]
 [ext_resource path="res://Platformer/Scenes/Finale/peint.png" type="Texture" id=4]
+[ext_resource path="res://Computer/Glitch - Sound Effect (HD)_160k.mp3" type="AudioStream" id=5]
 
 [node name="Finale" type="Node2D"]
 script = ExtResource( 3 )
@@ -25,5 +26,8 @@ polygon = PoolVector2Array( 70, 267, 70, 529, 1017, 529, 1017, 41, 70, 43, 70, 2
 position = Vector2( 541, 305 )
 
 [node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Glitch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="timeout" from="AttackTimer" to="." method="start_fight"]
